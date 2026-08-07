@@ -8,9 +8,12 @@
       />
       <span class="task-title">{{ task.title }}</span>
     </label>
-    <button class="task-remove" @click="$emit('remove', task.id)">
-      Remover
-    </button>
+    <div class="task-actions">
+      <button class="task-edit" @click="$emit('edit', task)">Editar</button>
+      <button class="task-remove" @click="$emit('remove', task.id)">
+        Remover
+      </button>
+    </div>
   </div>
 </template>
 
@@ -22,7 +25,7 @@ defineProps({
   },
 });
 
-defineEmits(['toggle', 'remove']);
+defineEmits(['toggle', 'remove', 'edit']);
 </script>
 
 <style scoped>
@@ -31,7 +34,7 @@ defineEmits(['toggle', 'remove']);
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  background-color: rgb(255, 249, 249);
+  background-color: white;
   border-radius: 8px;
   margin-bottom: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -53,7 +56,7 @@ defineEmits(['toggle', 'remove']);
 .task-label input[type='checkbox'] {
   width: 20px;
   height: 20px;
-  accent-color: #ffc8da;
+  accent-color: #ffc8da;;
 }
 
 .task-title {
@@ -62,7 +65,26 @@ defineEmits(['toggle', 'remove']);
 
 .task-item.done .task-title {
   text-decoration: line-through;
-  color: #eed9d9;
+  color: #999;
+}
+
+.task-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.task-edit {
+  background: none;
+  border: none;
+  color: #ffc8da;;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 4px 8px;
+}
+
+.task-edit:hover {
+  text-decoration: underline;
 }
 
 .task-remove {
