@@ -12,7 +12,10 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
-      registerType: 'prompt',
+      registerType: 'autoUpdate',
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.js',  
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
         cleanupOutdatedCaches: true,
@@ -92,6 +95,10 @@ export default defineConfig({
           },
         ],
       },
+      devOptions: {
+        enabled: true,
+        type: 'module',
+      }
     }),
   ],
 })
