@@ -63,7 +63,7 @@ function close() {
 
 .update-button {
   padding: 8px 16px;
-  background-color: #4a90d9;
+  background-color: #ffc8da;
   color: white;
   border: none;
   border-radius: 6px;
@@ -72,7 +72,7 @@ function close() {
 }
 
 .update-button:hover {
-  background-color: #357abd;
+  background-color: #ffa6c4;
 }
 
 .dismiss-button {

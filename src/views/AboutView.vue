@@ -28,7 +28,7 @@
 
 .about h2 {
   font-size: 1.3rem;
-  color: #ffc8da;
+  color: #ffb1cb;
   margin-bottom: 12px;
 }
 
@@ -49,6 +49,6 @@
 
 .about li {
   margin-bottom: 6px;
-  color: #292929;
+  color: #555;
 }
 </style>

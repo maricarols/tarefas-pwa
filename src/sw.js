@@ -4,8 +4,11 @@ import { CacheFirst, NetworkFirst } from 'workbox-strategies'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { ExpirationPlugin } from 'workbox-expiration'
 
+// O vite-plugin-pwa injeta o manifesto de precache aqui em tempo de build
 precacheAndRoute(self.__WB_MANIFEST)
 cleanupOutdatedCaches()
+
+// ── Cache de fontes do Google ──────────────────────────────────────────────
 
 registerRoute(
   ({ url }) => url.hostname === 'fonts.googleapis.com',
@@ -29,6 +32,8 @@ registerRoute(
   }),
 )
 
+// ── Cache da API — NetworkFirst ────────────────────────────────────────────
+
 registerRoute(
   ({ url }) => url.hostname === 'localhost' && url.port === '8001',
   new NetworkFirst({
@@ -41,23 +46,26 @@ registerRoute(
   }),
 )
 
+// ── Lifecycle ─────────────────────────────────────────────────────────────
+
 self.addEventListener('message', (event) => {
   if (event.data?.type === 'SKIP_WAITING') {
-    self.skipWaiting() 
+    self.skipWaiting() // 
   }
 })
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim()) 
+  event.waitUntil(self.clients.claim()) // 
 })
 
+// ── Recebendo push notifications ───────────────────────────────────────────
 
 self.addEventListener('push', (event) => {
   if (!event.data) return
 
   let payload
   try {
-    payload = event.data.json() 
+    payload = event.data.json() // 
   } catch {
     payload = { event: 'unknown', message: event.data.text() }
   }
@@ -69,7 +77,7 @@ self.addEventListener('push', (event) => {
       body,
       icon: icon || '/icons/icon-192x192.png',
       badge: '/icons/icon-192x192.png',
-      data: payload,          
+      data: payload,          // 
       vibrate: [200, 100, 200],
     }),
   )
@@ -99,6 +107,8 @@ function buildNotificationContent(payload) {
   }
 }
 
+// ── Clique na notificação ─────────────────────────────────────────────────
+
 self.addEventListener('notificationclick', (event) => {
   event.notification.close()
 
@@ -106,6 +116,7 @@ self.addEventListener('notificationclick', (event) => {
     self.clients
       .matchAll({ type: 'window', includeUncontrolled: true })
       .then((clientList) => {
+        // Se o app já está aberto em alguma aba, foca ela
         for (const client of clientList) {
           if (client.url.includes(self.registration.scope) && 'focus' in client) {
             client.postMessage({ // 
@@ -115,6 +126,7 @@ self.addEventListener('notificationclick', (event) => {
             return client.focus()
           }
         }
+        // Senão, abre uma nova janela
         if (self.clients.openWindow) {
           return self.clients.openWindow('/')
         }

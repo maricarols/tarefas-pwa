@@ -20,7 +20,6 @@ export function useOnlineStatus() {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
-
       await fetch(
         `${window.location.origin}/icons/icon-192x192.png?_=${Date.now()}`,
         {
@@ -41,9 +40,7 @@ export function useOnlineStatus() {
   onMounted(() => {
     window.addEventListener('online', updateStatus);
     window.addEventListener('offline', updateStatus);
-
     checkConnectivity();
-
     intervalId = setInterval(checkConnectivity, HEARTBEAT_INTERVAL);
   });
 

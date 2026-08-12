@@ -72,14 +72,14 @@ function dismiss() {
 .prompt-text p { margin: 0.2rem 0 0; font-size: 0.85rem; color: #718096; line-height: 1.4; }
 .prompt-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
 .btn-allow {
-  padding: 0.4rem 1rem; background: #ffc8da; color: #fff;
+  padding: 0.4rem 1rem; background: #4a90d9; color: #fff;
   border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;
 }
 .btn-dismiss {
-  padding: 0.4rem 1rem; background: transparent; color: #bb739f;
+  padding: 0.4rem 1rem; background: transparent; color: #718096;
   border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; font-size: 0.85rem;
 }
-
+/* Animação slide-up */
 .slide-up-enter-active, .slide-up-leave-active { transition: all 0.3s ease; }
 .slide-up-enter-from, .slide-up-leave-to { opacity: 0; transform: translateX(-50%) translateY(1rem); }
 </style>

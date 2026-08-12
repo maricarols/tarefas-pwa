@@ -1,6 +1,6 @@
 <template>
   <button v-if="showInstallButton" class="install-button" @click="installApp">
-    Instalar app
+    Instalar aplicativo
   </button>
 </template>
 
@@ -44,7 +44,7 @@ async function installApp() {
   width: 100%;
   padding: 14px;
   margin-top: 20px;
-  background-color: #27ae60;
+  background-color: #eb6385;
   color: white;
   border: none;
   border-radius: 8px;
@@ -54,6 +54,6 @@ async function installApp() {
 }
 
 .install-button:hover {
-  background-color: #219a52;
+  background-color: #eb6385;
 }
 </style>

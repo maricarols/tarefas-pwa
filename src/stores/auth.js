@@ -21,7 +21,7 @@ export const useAuthStore = defineStore('auth', () => {
     if (
       'serviceWorker' in navigator &&
       'Notification' in window &&
-      Notification.permission === 'granted' // 
+      Notification.permission === 'granted'
     ) {
       navigator.serviceWorker.ready
         .then((reg) => subscribe(reg))

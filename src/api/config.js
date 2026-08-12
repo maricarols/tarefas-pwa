@@ -14,7 +14,7 @@ apiClient.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
-  const pushEndpoint = localStorage.getItem('push_endpoint')
+  const pushEndpoint = localStorage.getItem('push_endpoint') // 
   if (pushEndpoint) {
     config.headers['X-Push-Endpoint'] = pushEndpoint
   }

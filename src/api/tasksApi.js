@@ -6,7 +6,7 @@ const tasksApi = {
   },
 
   create(title) {
-    return apiClient.post('/tasks', { title });
+    return apiClient.post('/tasks', title);
   },
 
   update(id, data) {
@@ -16,7 +16,7 @@ const tasksApi = {
   remove(id) {
     return apiClient.delete(`/tasks/${id}`);
   },
-  
+
   uploadImage(file, description = '') {
     const formData = new FormData();
     formData.append('file', file);
